@@ -85,8 +85,12 @@ func solutionStack(inputString: String) -> String {
             position = (position.0, index)
             // do the conversion
             //print(position)
-            let lastPos = (position.1 - 1)  // positions without parenthesis
-            let firstPos = (position.0 + 1) // positions without parenthesis
+            let lastPos = (position.1 - 1)  // positions without parentheses
+            let firstPos = (position.0 + 1) // positions without parentheses
+            // protect from empty parentheses
+            guard firstPos < lastPos && (lastPos - firstPos > 0) else {
+                continue
+            }
             var reversed: [Character] = []
             for idx in 0...lastPos-firstPos {
                 reversed.append(resultString[lastPos - idx])
